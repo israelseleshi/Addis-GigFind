@@ -1,0 +1,214 @@
+/* Accessibility Styles */
+
+/* Focus Indicators */
+*:focus {
+  outline: none;
+}
+
+/* High-contrast focus rings */
+.focus-ring:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus,
+a:focus,
+[tabindex]:focus {
+  outline: 2px solid #FFB300;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(255, 179, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Focus for interactive cards */
+.card-focus:focus {
+  outline: 2px solid #FFB300;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(255, 179, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Skip links */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #0A2239;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  z-index: 1000;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 6px;
+  outline: 2px solid #FFB300;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .text-gray-500,
+  .text-gray-600,
+  .text-[#717182] {
+    color: #2D3748 !important;
+  }
+  
+  .bg-gray-100 {
+    background-color: #F7FAFC !important;
+    border: 1px solid #CBD5E0 !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus-visible for modern browsers */
+@supports selector(:focus-visible) {
+  button:focus:not(:focus-visible),
+  input:focus:not(:focus-visible),
+  textarea:focus:not(:focus-visible),
+  select:focus:not(:focus-visible),
+  a:focus:not(:focus-visible),
+  [tabindex]:focus:not(:focus-visible) {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+/* Keyboard navigation indicators */
+.keyboard-nav button:focus,
+.keyboard-nav a:focus,
+.keyboard-nav [tabindex]:focus {
+  background-color: rgba(255, 179, 0, 0.1);
+  border-color: #FFB300;
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Color contrast improvements */
+.text-improved-contrast {
+  color: #2D3748 !important; /* Improved from #717182 */
+}
+
+.text-improved-muted {
+  color: #4A5568 !important; /* Improved muted text */
+}
+
+/* Interactive element states */
+button:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+button:disabled:focus,
+input:disabled:focus,
+textarea:disabled:focus,
+select:disabled:focus {
+  outline: 2px solid #CBD5E0;
+  box-shadow: 0 0 0 4px rgba(203, 213, 224, 0.2);
+}
+
+/* Loading states */
+.loading-indicator {
+  position: relative;
+}
+
+.loading-indicator::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid #E2E8F0;
+  border-top: 2px solid #FFB300;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error states */
+.error-state {
+  border-color: #E53E3E !important;
+  background-color: rgba(229, 62, 62, 0.05) !important;
+}
+
+.error-state:focus {
+  outline-color: #E53E3E !important;
+  box-shadow: 0 0 0 4px rgba(229, 62, 62, 0.2) !important;
+}
+
+/* Success states */
+.success-state {
+  border-color: #38A169 !important;
+  background-color: rgba(56, 161, 105, 0.05) !important;
+}
+
+.success-state:focus {
+  outline-color: #38A169 !important;
+  box-shadow: 0 0 0 4px rgba(56, 161, 105, 0.2) !important;
+}
+
+/* Touch targets */
+@media (pointer: coarse) {
+  button,
+  input,
+  textarea,
+  select,
+  a,
+  [tabindex] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .skip-link {
+    background: #F7FAFC;
+    color: #0A2239;
+  }
+  
+  .focus-ring:focus,
+  button:focus,
+  input:focus,
+  textarea:focus,
+  select:focus,
+  a:focus,
+  [tabindex]:focus {
+    outline-color: #FFD700;
+    box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.3);
+  }
+}
